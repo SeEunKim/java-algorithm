@@ -1,8 +1,8 @@
-package boj.sort;
+package boj;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.StringTokenizer;
 
 
 /**
@@ -20,19 +20,22 @@ import java.util.Collections;
  * 3
  *
  */
-public class Main {
+public class FindDecimal1978 {
     public static void main(String[] args) throws IOException {
         final int MAX = 1000;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         int decimalCount = 0;
 
-        int numbersCount = Integer.parseInt(br.readLine());
+        int numbersCount = Integer.parseInt(st.nextToken());
         int[] numbers = new int[numbersCount];
 
+
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < numbersCount; i++) {
-            numbers[i] = Integer.parseInt(br.readLine());
+            numbers[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(numbers);
@@ -51,8 +54,7 @@ public class Main {
             }
         }
 
-
-        for (int i = 0; i < numbersCount; i++) {
+        for (int i = 1; i < numbersCount; i++) {
             if (arr[numbers[i]] == true) {
                 decimalCount++;
             }
