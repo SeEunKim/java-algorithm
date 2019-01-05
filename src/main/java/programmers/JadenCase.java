@@ -20,13 +20,13 @@ import java.util.Arrays;
  */
 public class JadenCase {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        SolutionJadeCase s = new SolutionJadeCase();
         String result = s.solution("3people   o ");
         System.out.println(result);
     }
 }
 
-class Solution {
+class SolutionJadeCase {
     public String solution(String s) {
         StringBuilder sb = new StringBuilder();
         String[] ss = s.split(" ");
