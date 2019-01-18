@@ -1,6 +1,11 @@
-package codeforces.TheatreSquare;
+package codeforces.A.A1;
 
 import java.util.Scanner;
+
+/**
+ * https://codeforces.com/contest/1/problem/A
+ * A. Theatre Square
+ */
 
 public class Main {
     public static void main(String[] args) {

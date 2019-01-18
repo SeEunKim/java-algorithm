@@ -1,18 +1,15 @@
-package codeforces;
+package codeforces.A.A1097;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
 /**
- * AS
- * 2H 4C TH JH AD
- *
- * YES
+ * https://codeforces.com/contest/1097/problem/A
+ * A. Gennady and a Card Game
  */
-public class GennadyandaCardGame {
+public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

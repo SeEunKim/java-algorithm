@@ -1,14 +1,20 @@
-package codeforces;
+package codeforces.B.B1100;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * https://codeforces.com/contest/1100/problem/B
+ * B. Build a Contest
+ */
+
 
 // 못품 세번째에서 실패
 public class BuildaContest1100B {
     public static void main(String[] args) throws IOException {
+        //todo 실패
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
