@@ -1,12 +1,9 @@
 package codeforces.A.A1108;
 
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStreamReader;
-        import java.util.ArrayList;
-        import java.util.Arrays;
-        import java.util.List;
-        import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -14,6 +11,8 @@ public class Main {
         int countOfCase = Integer.parseInt(br.readLine());
         StringTokenizer st;
         int[] arr = new int[4];
+
+
         for (int i = 0; i < countOfCase; i++) {
             st = new StringTokenizer(br.readLine());
 
@@ -25,7 +24,6 @@ public class Main {
                 System.out.println(arr[0] + " " + (arr[2] + 1));
             } else {
                 System.out.println(arr[0] + " " + arr[2]);
-
             }
         }
     }

@@ -23,25 +23,12 @@ public class Main {
 
         int max = numbers.get(0);
 
-        List<Integer> arr = new ArrayList<>();
         for (int a = 1; a <= max; a++) {
             if ((max%a == 0)) {
-                arr.add(a);
+                Integer num = a;
+                numbers.remove(num);
             }
         }
-
-        arr.sort(Collections.reverseOrder());
-
-        System.out.println(numbers);
-        System.out.println(arr);
-        for (int i = 0; i < arr.size(); i++) {
-            System.out.println(arr.get(i));
-            System.out.println(numbers.get(i));
-            if (arr.get(i) != numbers.get(i)) {
-                System.out.println(max + " " +numbers.get(i));
-                break;
-            }
-        }
-
+        System.out.println(max + " " + numbers.get(0));
     }
 }
