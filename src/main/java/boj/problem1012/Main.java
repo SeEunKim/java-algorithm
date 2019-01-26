@@ -11,6 +11,10 @@ import java.util.StringTokenizer;
  */
 public class Main {
     static BufferedReader br;
+    static Boolean[][] visited;
+    static int[][] map;
+    static int M;
+    static int N;
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -20,85 +24,52 @@ public class Main {
         }
     }
     public static void game() throws IOException {
-
-        int[] dx = {0, 1, 0, -1};
-        int[] dy = {1, 0, -1, 0};
-
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int M = Integer.parseInt(st.nextToken());
-        int N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
         int countOfBug = Integer.parseInt(st.nextToken());
 
-        Boolean[][] visited = new Boolean[M][N];
-        int[][] checked = new int[M][N];
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                visited[i][j] = false;
-                checked[i][j] = 0;
-            }
-        }
-
-        Queue<Point> q = new LinkedList<>();
+        visited = new Boolean[M][N];
+        map = new int[M][N];
 
         for (int i = 0; i < countOfBug; i++) {
             st = new StringTokenizer(br.readLine());
-            q.add(new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
+            map[Integer.parseInt(st.nextToken())][Integer.parseInt(st.nextToken())] = 1;
         }
 
-        while (!q.isEmpty()) {
-            Point p = q.poll();
-            for (int i = 0; i < 4; i++) {
-                int newX = dx[i] + p.getX();
-                int newY = dy[i] + p.getY();
-                if (0 <= newX && newX < M && 0 <= newY && newY < N && !visited[newX][newY]) {
-                    checked[newX][newY] = checked[p.getX()][p.getY()] + 1;
-                    visited[newX][newY] = true;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                visited[i][j] = false;
+            }
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (map[i][j] == 1 && !visited[i][j]) {
+                    DFS(i, j);
+                    cnt++;
                 }
             }
         }
 
-        int max = 0;
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                max = Math.max(checked[i][j], max);
+        System.out.println(cnt);
+    }
+
+    public static void DFS(int x, int y) {
+        int[] dx = {0, 1, 0, -1};
+        int[] dy = {1, 0, -1, 0};
+
+        visited[x][y] = true;
+        for (int i = 0; i < 4; i++) {
+            int newX = x + dx[i];
+            int newY = y + dy[i];
+
+            if (0 <= newX && newX < M && 0 <= newY && newY < N) {
+                if (map[newX][newY] == 1 && !visited[newX][newY]) {
+                    DFS(newX, newY);
+                }
             }
         }
-
-        System.out.println(max);
-    }
-    //todo 실패
-}
-
-class Point {
-    int x;
-    int y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
     }
 }
