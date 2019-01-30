@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int[] arr;
-    static int[] visited;
-    static int N;
+    private static int[] arr;
+    private static int[] visited;
+    private static int N;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
