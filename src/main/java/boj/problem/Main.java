@@ -1,9 +1,7 @@
-package boj.problem1012;
+package boj.problem;
 
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
