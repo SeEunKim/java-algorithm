@@ -19,5 +19,20 @@ public class MainTest {
 
     }
 
+    @Test
+    public void test3() {
+        String a = "1q2w3e4r55t";
+        String answer = "qwert";
+
+        a = a.replaceAll("\\d", "");
+        System.out.println(a);
+    }
+
+    @Test
+    public void test4() {
+        String a = "abd";
+        System.out.println(a.charAt(0));
+    }
+
 
 }
