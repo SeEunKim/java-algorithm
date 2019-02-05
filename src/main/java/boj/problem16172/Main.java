@@ -37,6 +37,7 @@ public class Main {
                 failed[i] = ++j;
         }
 
+
         for (int i = 0, j = 0; i < N; i++) {
             while (j > 0 && origin.charAt(i) != target.charAt(j))
                 j = failed[j - 1];
