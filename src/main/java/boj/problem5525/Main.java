@@ -47,8 +47,9 @@ public class Main {
 
             if (origin.charAt(i) == target.charAt(j)) {
                 if (j == target.length() - 1) {
-                    j = pi[j];
+                   // j = pi[j];
                     cnt++;
+                    j = 0;
                 }
                 j++;
             }
