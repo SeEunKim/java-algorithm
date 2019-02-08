@@ -1,5 +1,4 @@
-package boj.problem;
-
+package boj.problem1012;
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -7,6 +6,7 @@ import java.util.StringTokenizer;
 /**
  * https://www.acmicpc.net/problem/1012
  */
+
 public class Main {
     static BufferedReader br;
     static Boolean[][] visited;

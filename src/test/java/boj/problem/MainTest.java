@@ -3,6 +3,8 @@ package boj.problem;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MainTest {
     @Test
@@ -70,6 +72,26 @@ public class MainTest {
 
         System.out.println(Arrays.toString(pi));
 
+
+    }
+
+    @Test
+    public void test6() {
+        int[] answer = {1, 2, 3};
+
+        Set<Integer> s = new TreeSet<>();
+
+        int[] arr = {1, 2, 3, 4, 1};
+
+
+        for (int i : arr) {
+            s.add(i);
+        }
+
+        System.out.println(s);
+
+        Integer[] arrs = s.toArray(new Integer[s.size()]);
+        System.out.println(Arrays.toString(arrs));
 
     }
 
