@@ -36,6 +36,10 @@ public class MainTest {
     public void test4() {
         String a = "abd";
         System.out.println(a.charAt(0));
+
+        Character c = 'a';
+
+        System.out.println(c.equals(a.charAt(0)));
     }
 
     @Test
