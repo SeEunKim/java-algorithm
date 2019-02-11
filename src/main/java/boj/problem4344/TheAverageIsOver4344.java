@@ -1,4 +1,4 @@
-package boj;
+package boj.problem4344;
 
 import java.io.*;
 import java.util.ArrayList;

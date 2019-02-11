@@ -1,4 +1,4 @@
-package boj.problem2909;
+package boj.problem2902;
 
 /**
  * https://www.acmicpc.net/problem/2902

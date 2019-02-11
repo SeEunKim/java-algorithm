@@ -1,4 +1,4 @@
-package boj;
+package boj.problem1978;
 
 import java.io.*;
 import java.util.Arrays;

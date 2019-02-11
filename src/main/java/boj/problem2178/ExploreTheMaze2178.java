@@ -1,4 +1,4 @@
-package boj;
+package boj.problem2178;
 
 //4 6
 //        101111

@@ -1,4 +1,4 @@
-package boj;
+package boj.problem2750;
 
 import java.io.*;
 

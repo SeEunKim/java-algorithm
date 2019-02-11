@@ -1,4 +1,4 @@
-package boj;
+package boj.problem1991;
 
 import java.util.Scanner;
 
