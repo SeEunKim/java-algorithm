@@ -2,6 +2,7 @@ package programmers.problem42746;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,10 +13,16 @@ public class Main {
     public static void main(String[] args) {
         Solution s = new Solution();
         int[] arr = {6, 10, 2};
-        int[] arr1 = {3, 30, 34, 5, 9};
+        int[] arr1 = {3, 30 ,300, 34, 5, 9, 300};
         String result = s.solution(arr1);
         System.out.println(result);
     }
+
+    // 9 300
+    // 3009
+    // 9300
+    // 30030
+    // 30300
 }
 
 
@@ -30,6 +37,7 @@ class Solution {
         }
 
         int size = list.size();
+
         Collections.sort(list, (num1, num2) -> (num2+num1).compareTo(num1+num2));
 
         if (list.get(0).equals("0")) {
