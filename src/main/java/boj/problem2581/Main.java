@@ -27,12 +27,6 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < primeNumbers.length; i++) {
-            if (primeNumbers[i]) {
-                System.out.println(i);
-            }
-        }
-
         List<Integer> list = new ArrayList<>();
 
         for (int i = M; i <= N; i++) {
@@ -52,6 +46,5 @@ public class Main {
             System.out.println(list.get(0));
         }
     }
-    //todo 실패
 
 }
