@@ -18,6 +18,8 @@ public class Solution {
                 tmp = gap + grades[i];
                 if (tmp >= 40) {
                     answer[i] = tmp;
+                } else {
+                    answer[i] = grades[i];
                 }
             } else {
                 answer[i] = grades[i];
