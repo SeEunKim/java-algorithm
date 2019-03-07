@@ -2,6 +2,10 @@ package hackerrank.AppleandOrange;
 
 import java.util.Scanner;
 
+/**
+ * https://www.hackerrank.com/challenges/apple-and-orange/problem
+ */
+
 public class Solution {
     static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
         int countApple = 0;
