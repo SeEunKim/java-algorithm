@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Solution s = new Solution();
-        String input = "17";
+        String input = "123";
         int result = s.solution(input);
         System.out.println(result);
     }
@@ -34,6 +34,7 @@ class Solution {
 
         Set<Integer> primeInputNumbers = new HashSet<>();;
         for (int i = 1; i <= list.length; i++) {
+            System.out.println("### : [" + i + "]");
             perm(list, 0, i, primeInputNumbers);
         }
 
@@ -52,8 +53,11 @@ class Solution {
         } else {
             for (int i = depth; i < arr.length; i++) {
                 swap(arr, i, depth);
+                System.out.println("depth[" + depth + "]k[" + k + "]arr1" + Arrays.toString(arr) + "");
                 perm(arr, depth + 1, k, primeInputNumbers);
                 swap(arr, i, depth);
+                System.out.println("depth[" + depth + "]k[" + k + "]arr2" + Arrays.toString(arr) + "");
+                System.out.println();
             }
         }
     }
@@ -69,8 +73,9 @@ class Solution {
         for (int i = 0; i < k; i++) {
             //System.out.print(arr[i]);
             a.append(arr[i]);
+            System.out.println("    k[" + k + "]" + "print[" + a.toString() + "]");
             primeInputNumbers.add(Integer.parseInt(a.toString()));
         }
-        System.out.println();
+        //System.out.println();
     }
 }
