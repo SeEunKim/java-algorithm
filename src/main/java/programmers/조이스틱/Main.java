@@ -1,15 +1,14 @@
 package programmers.조이스틱;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String name = "ABAAAAAAAAABB";
+        String name = "AAA";
         Solution s = new Solution();
         int result = s.solution(name);
-        System.out.println("##### " + result);
+        System.out.println(result);
     }
 }
 
@@ -29,24 +28,17 @@ class Solution {
         String[] alphabet = name.split("");
         int index = 0;
 
-
-
         while (!isAllAlphabetA(alphabet)) {
             int count = map.get(alphabet[index].charAt(0));
             alphabet[index] = "A";
             answer += count;
 
-            if (!isAllAlphabetA(alphabet)) {
-                //answer += move.getDistance();
+            Point move = moveRightLeft(alphabet, index);
+
+            if (move.getDirection().equals("stay")) {
+                break;
             }
 
-            System.out.println("11count : " + count);
-            System.out.println("11 answer : " + answer);
-            System.out.println(Arrays.toString(alphabet));
-
-            System.out.println();
-
-            Point move = moveRightLeft(alphabet, index);
             if (move.getDirection().equals("right")) {
                 index = index + move.getDistance();
             } else {
@@ -57,37 +49,30 @@ class Solution {
                 index = index - alphabet.length;
             }
 
-            //answer += count + move.getDistance();
-//            if (!isAllAlphabetA(alphabet)) {
-//                answer += move.getDistance();
-//            }
-            System.out.println("count : " + count);
-            System.out.println("answer : " + answer);
-            System.out.println(Arrays.toString(alphabet));
-            System.out.println(move);
-            System.out.println();
+            answer += move.getDistance();
         }
-
         return answer;
     }
 
-    public boolean isAllAlphabetA (String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            if (!names[i].equals("A")) {
+    private boolean isAllAlphabetA (String[] names) {
+        for (String name : names) {
+            if (!name.equals("A")) {
                 return false;
             }
         }
         return true;
     }
 
-    public Point moveRightLeft(String[] names, int index) {
+    private Point moveRightLeft(String[] names, int index) {
         int right = 0;
         int left = 0;
         int count = index + 1;
 
-        System.out.println("index : " + index);
+        if (isAllAlphabetA(names)) {
+            return new Point("stay", 0);
+        }
+
         while (count < names.length + index) {
-            //System.out.println("right");
             if (count == names.length) {
                 count = 0;
             }
@@ -102,7 +87,6 @@ class Solution {
 
         count = names.length - 1;
         while (count > 0) {
-            System.out.println("left");
             if (names[count].equals("A")) {
                 left++;
             } else {
@@ -116,10 +100,7 @@ class Solution {
             left = left - names.length;
         }
 
-        System.out.println("right : " + (right + 1));
-        System.out.println("left : " + left);
-
-        String direction = (right + 1) >= (left) ? "left" : "right";
+        String direction = (right + 1) > (left) ? "left" : "right";
         return new Point(direction, Math.min((right + 1) , left));
     }
 }
@@ -128,16 +109,16 @@ class Point {
     private String direction;
     private int distance;
 
-    public Point(String direction, int distance) {
+    Point(String direction, int distance) {
         this.direction = direction;
         this.distance = distance;
     }
 
-    public String getDirection() {
+    String getDirection() {
         return direction;
     }
 
-    public int getDistance() {
+    int getDistance() {
         return distance;
     }
 
