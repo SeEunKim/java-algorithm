@@ -1,11 +1,12 @@
 package programmers.조이스틱;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String name = "AAA";
+        String name = "ABAAAAAAABAAABB";
         Solution s = new Solution();
         int result = s.solution(name);
         System.out.println(result);
@@ -32,6 +33,7 @@ class Solution {
             int count = map.get(alphabet[index].charAt(0));
             alphabet[index] = "A";
             answer += count;
+            System.out.println(Arrays.toString(alphabet));
 
             Point move = moveRightLeft(alphabet, index);
 
@@ -50,6 +52,7 @@ class Solution {
             }
 
             answer += move.getDistance();
+            System.out.println(move.toString());
         }
         return answer;
     }
