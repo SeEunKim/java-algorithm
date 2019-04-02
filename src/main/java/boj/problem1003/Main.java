@@ -35,7 +35,6 @@ public class Main {
     }
 
     private static int fibonacci(int n) {
-
         if (n == 0) {
             fibonacciArr[n] = 0;
             return fibonacciArr[n];
