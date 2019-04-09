@@ -1,7 +1,6 @@
 package programmers.타일장식물;
-
-import java.util.Arrays;
 import java.util.Scanner;
+
 
 /**
  * Created by SeEun Kim.
