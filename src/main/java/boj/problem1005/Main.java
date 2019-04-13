@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -16,61 +17,67 @@ import java.util.Queue;
  * ACM Craft
  */
 public class Main {
+    public static LinkedList<Integer> graph[];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < t; i++) {
-            String[] nk = br.readLine().split(" ");
-            int n = Integer.parseInt(nk[0]);
-            int k = Integer.parseInt(nk[1]);
-            int[] buildingTime = new int[n + 1];
-            String[] nArr = br.readLine().split(" ");
+            String line[] = br.readLine().split(" ");
+            int n = Integer.parseInt(line[0]);
+            int m = Integer.parseInt(line[1]);
+
+            int[] buildTime = new int[n];
+            int[] result = new int[n];
+            line = br.readLine().split(" ");
             for (int j = 0; j < n; j++) {
-                buildingTime[j + 1] = Integer.parseInt(nArr[j]);
+                buildTime[j] = Integer.parseInt(line[j]);
             }
 
-            Queue<Point> q = new LinkedList<>();
+            graph = new LinkedList[n];
 
-            for (int j = 0; j < k; j++) {
-                String[] point = br.readLine().split(" ");
-                q.add(Point.create(point[0], point[1]));
+            for (int j = 0; j < n; j++) {
+                graph[j] = new LinkedList<>();
+            }
+            int[] indegree = new int[n];
+            for (int j = 0; j < m; j++) {
+                line = br.readLine().split(" ");
+                int from = Integer.parseInt(line[0]) - 1;
+                int to = Integer.parseInt(line[1]) - 1;
+                graph[from].add(to);
+                indegree[to]++;
             }
 
-            int[] d = new int[n + 1];
-            for (int j = 1; j < d.length; j++) {
-                d[j] = buildingTime[j];
+            for (int j = 0; j < graph.length; j++) {
+                System.out.println(graph[j]);
             }
 
-            while(!q.isEmpty()) {
-                Point p = q.poll();
-                d[p.getY()] = Math.max(d[p.getX()] + buildingTime[p.getY()], d[p.getY()]);
+            Queue<Integer> searchQ = new LinkedList<>();
+            for (int j = 0; j < n; j++) {
+                if(indegree[j] == 0) {
+                    searchQ.offer(i);
+                }
             }
 
+            for (int j = 0; j < n; j++) {
+                result[j] = buildTime[j];
+            }
+
+            while(!searchQ.isEmpty()) {
+                int zeroIndegree = searchQ.poll();
+
+                for(int linkNode : graph[zeroIndegree]) {
+                    indegree[linkNode]--;
+                    result[linkNode] = Math.max(result[linkNode], result[zeroIndegree] + buildTime[linkNode]);
+                    if(indegree[linkNode] == 0) {
+                        searchQ.offer(linkNode);
+                    }
+                    System.out.println(Arrays.toString(result));
+                }
+            }
             int w = Integer.parseInt(br.readLine());
-            System.out.println(d[w]);
-            System.out.println(Arrays.toString(d));
+            //System.out.println(Arrays.toString(result));
         }
     }
-}
-class Point {
-    private int x;
-    private int y;
 
-    private Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    static Point create(String x, String y) {
-        return new Point(Integer.parseInt(x), Integer.parseInt(y));
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 }
