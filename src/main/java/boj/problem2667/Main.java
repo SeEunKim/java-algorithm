@@ -8,15 +8,12 @@ import java.util.Scanner;
  * Date: 2019-04-23
  * Time: 14:31
  */
+
 public class Main {
-    static int[][] map;
-    static int[] count;
-    static int n = 0;
-    static int cnt = 1;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        map = new int[n][n];
+        int n = sc.nextInt();
+        int[][] map = new int[n][n];
 
         for (int i = 0; i < n; i++) {
             String str = sc.next();
@@ -25,17 +22,29 @@ public class Main {
             }
         }
 
-        solution();
-        System.out.println(cnt - 1);
-        Arrays.sort(count);
+        Solution s = new Solution();
+        int[] result = s.solution(map, n);
 
-        for (int i = 0; i < count.length; i++) {
-            if (count[i] != 0) {
-                System.out.println(count[i]);
+        Arrays.sort(result);
+
+        System.out.println(result.length - 1);
+
+        for (int value : result) {
+            if (value != 0) {
+                System.out.println(value);
             }
         }
     }
-    private static void solution() {
+}
+
+class Solution {
+    private static int[][] map;
+    private static int n;
+
+    public int[] solution(int[][] map, int n) {
+        int cnt = 1;
+        Solution.n = n;
+        Solution.map = map;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (map[i][j] == 1) {
@@ -44,7 +53,7 @@ public class Main {
             }
         }
 
-        count = new int[cnt];
+        int[] count = new int[cnt];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (map[i][j] > 1) {
@@ -52,12 +61,13 @@ public class Main {
                 }
             }
         }
+        return count;
     }
-    static int[] goX = {-1, 0, 1, 0};
-    static int[] goY = {0, 1, 0, -1};
-    private static void DFS(int a, int b, int k) {
-        map[a][b] = k;
 
+    private void DFS(int a, int b, int k) {
+        map[a][b] = k;
+        int[] goX = {-1, 0, 1, 0};
+        int[] goY = {0, 1, 0, -1};
         for (int i = 0; i < 4; i++) {
             int dx = a + goX[i];
             int dy = b + goY[i];
