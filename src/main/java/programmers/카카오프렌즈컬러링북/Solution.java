@@ -1,7 +1,5 @@
 package programmers.카카오프렌즈컬러링북;
 
-import java.util.Arrays;
-
 /**
  * Created by SeEun Kim.
  * Date: 2019-04-25
@@ -11,69 +9,58 @@ import java.util.Arrays;
  *
  */
 class Solution {
-    static int width;
-    static int height;
-    static int map[][];
-    static int cnt;
-    static int pre = 1;
+    private static boolean[][] visited;
+    private static int M;
+    private static int N;
+    static int[][] map;
+    static int maxSizeOfOneArea;
+    static int count;
     public int[] solution(int m, int n, int[][] picture) {
         int numberOfArea = 0;
-        int maxSizeOfOneArea = 0;
+        maxSizeOfOneArea = 0;
 
-        cnt = 1;
-
-        height = m;
-        width = n;
-
-        map = new int[m][n];
+        visited = new boolean[m][n];
+        M = m;
+        N = n;
+        map = picture;
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (picture[i][j] != 0) {
-                    int tmp = picture[i][j];
-                    //map[i][j] = tmp;
-                    pre = tmp;
-                    cnt++;
-                    DFS(i, j, tmp, picture);
+                if (!visited[i][j] && (map[i][j] != 0)) {
+                    numberOfArea++;
+                    maxSizeOfOneArea = Math.max(maxSizeOfOneArea, count);
+                    count = 0;
+                    dfs(i, j);
                 }
             }
-        }
-
-        for (int i = 0; i < m; i++) {
-            System.out.println(Arrays.toString(picture[i]));
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < m; i++) {
-            System.out.println(Arrays.toString(map[i]));
         }
 
         int[] answer = new int[2];
         answer[0] = numberOfArea;
-        answer[1] = maxSizeOfOneArea;
+        answer[1] = maxSizeOfOneArea + 1;
         return answer;
     }
 
-    private void DFS(int i, int j, int number, int[][] picture) {
-        int[] goX = {0, 1, 0, -1};
-        int[] goY = {1, 0, -1, 0};
+    public void dfs(int x, int y) {
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
 
-        for (int k = 0; k < 4; k++) {
-            int newX = goX[k] + i;
-            int newY = goY[k] + j;
+        visited[x][y] = true;
+        int color = map[x][y];
 
-            if (isRange(newX, newY)) {
-                if (picture[newX][newY] == number && (map[newX][newY] == 0)) {
-                    map[newX][newY] = number;
-                    DFS(newX, newY, number, picture);
+        for (int i = 0; i < 4; i++) {
+            int newX = x + dx[i];
+            int newY = y + dy[i];
+            if (isRange(newX, newY) && !visited[newX][newY]) {
+                if (color == map[newX][newY]) {
+                    count++;
+                    dfs(newX, newY);
                 }
             }
         }
-
     }
 
-    private boolean isRange(int i, int j) {
-        return (0 <= i && i < height) && (0 <= j && j < width);
+    private boolean isRange(int x, int y) {
+        return ((0 <= x) && (x < M) && (0 <= y) && (y < N));
     }
 }
