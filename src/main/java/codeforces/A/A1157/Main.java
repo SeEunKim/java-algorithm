@@ -1,4 +1,4 @@
-package hackerrank.reachable_numbers;
+package codeforces.A.A1157;
 
 import java.util.*;
 
@@ -6,6 +6,8 @@ import java.util.*;
  * Created by SeEun Kim.
  * Date: 2019-05-10
  * Time: 23:10
+ *
+ * https://codeforces.com/contest/1157/problem/A
  */
 public class Main {
     public static void main(String[] args) {
@@ -22,7 +24,7 @@ public class Main {
             }
             input = result;
         }
-
+        System.out.println(results);
         System.out.println(results.size());
     }
 }
