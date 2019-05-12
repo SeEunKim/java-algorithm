@@ -1,6 +1,9 @@
 package boj.problem11724;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+
 
 /**
  * Created by SeEun Kim.
@@ -8,17 +11,17 @@ import java.util.Scanner;
  * Time: 23:01
  */
 public class Main {
-    private static int[][] graph;
-    private static boolean[] visited;
-    private static int N;
+
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
+        int n = sc.nextInt();
         int M = sc.nextInt();
 
-        graph = new int[N + 1][N + 1];
-        visited = new boolean[N + 1];
+        int[][] graph = new int[n + 1][n + 1];
+        boolean[] visited = new boolean[n + 1];
+        Queue queue = new LinkedList();
 
         for (int i = 0; i < M; i++) {
             int x = sc.nextInt();
@@ -26,23 +29,28 @@ public class Main {
             graph[x][y] = graph[y][x] = 1;
         }
 
-        int cnt = 1;
-        for (int i = 1; i <= N; i++) {
-            if (!visited[i]) {
-                dfs(i);
-                cnt++;
+        for (int i = 2; i <= n; i++) {
+            if (graph[1][i] == 1) {
+                visited[i] = true;
+                queue.offer(i);
             }
         }
-        System.out.println(cnt - 1);
-    }
 
-    private static void dfs(int x) {
-        visited[x] = true;
-
-        for (int i = 1; i <= N; i++) {
-            if ((!visited[i]) && (graph[x][i] == 1)) {
-                dfs(i);
+        while(!queue.isEmpty()) {
+            int c = (int)queue.poll();
+            for (int i = 2; i <= n; i++) {
+                if (graph[c][i] == 1 && !visited[i]) {
+                    visited[i] = true;
+                }
             }
         }
+
+        int count = 0;
+        for (boolean b : visited) {
+            if(b) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 }
